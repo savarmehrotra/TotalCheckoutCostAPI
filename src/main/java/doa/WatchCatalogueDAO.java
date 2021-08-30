@@ -12,6 +12,7 @@ import com.amazonaws.services.dynamodbv2.document.QueryOutcome;
 import com.amazonaws.services.dynamodbv2.document.internal.IteratorSupport;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
+import constant.DynamoDBConstants;
 import exception.DataBaseException;
 import model.WatchItem;
 
@@ -55,14 +56,12 @@ public class WatchCatalogueDAO implements CatalogDAO<WatchItem> {
 
         LoggingUtil.log("DDB Item Received from Catalog Table : " + item.toJSONPretty());
 
-        //TODO : Move strings to constants
         return WatchItem.builder()
-                .itemId(item.getString("itemId"))
-                .watchName(item.getString("watchName"))
-                .watchPrice(Double.parseDouble(item.getString("watchPrice")))
-                .discountedUnitCost(Double.parseDouble(item.getString("discountedUnitCost")))
-                .discountedUnitCount(Integer.parseInt(item.getString("discountedUnitCount")))
+                .itemId(item.getString(DynamoDBConstants.ITEM_ID_PRIMARY_KEY))
+                .watchName(item.getString(DynamoDBConstants.WATCH_NAME_ATTRIBUTE))
+                .watchPrice(Double.parseDouble(item.getString(DynamoDBConstants.WATCH_PRICE_ATTRIBUTE)))
+                .discountedUnitCost(Double.parseDouble(item.getString(DynamoDBConstants.DISCOUNTED_UNIT_COST_ATTRIBUTE)))
+                .discountedUnitCount(Integer.parseInt(item.getString(DynamoDBConstants.DISCOUNTED_UNIT_COUNT_ATTRIBUTE)))
                 .build();
-
     }
 }

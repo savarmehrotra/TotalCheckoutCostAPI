@@ -16,11 +16,9 @@ import lombok.NonNull;
 import model.WatchItem;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
-//TODO : check if it exists in DB and exception handling
-
 /**
- * Creating ItemId and count pairing
- * Check if item exists in the catalog, and return the WatchItem and corresponding count
+ * Creating ItemId and count pairings
+ * Checking if the item exists in the catalog, and return the WatchItem and corresponding count
  */
 
 public class WatchListCondenser {

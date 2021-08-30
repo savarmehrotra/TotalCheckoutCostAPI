@@ -3,6 +3,7 @@ package api;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import constant.RequestResponseConstants;
 import dagger.DaggerTotalCheckoutCostAPIServiceComponent;
 import dagger.TotalCheckoutCostAPIServiceComponent;
 import model.TotalCheckoutCostAPIRequest;
@@ -12,8 +13,6 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.util.Objects;
 
-
-//TODO : Convert floating strings to Constants.
 // TODO : Add JavaDoc
 public class TotalCheckoutCostAPIHandler implements RequestHandler<JSONObject, TotalCheckoutCostAPIResponse> {
 
@@ -33,13 +32,13 @@ public class TotalCheckoutCostAPIHandler implements RequestHandler<JSONObject, T
         catch (IOException e) {
 
             return TotalCheckoutCostAPIResponse.builder()
-                    .body("Incorrect Inputs Passed")
-                    .statusCode(400)
+                    .body(RequestResponseConstants.INTERNAL_INPUT_PASSED_MESSAGE)
+                    .statusCode(RequestResponseConstants.INCORRECT_INPUT_ERROR_CODE)
                     .build();
         }
 
         return totalCheckoutCostAPIServiceComponent.getTotalCheckoutCostAPIService()
-                .processRequest(totalCheckoutCostAPIRequest, context.getLogger());
+                .processRequest(totalCheckoutCostAPIRequest);
     }
 
     private void initialize() {

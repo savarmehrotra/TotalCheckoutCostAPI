@@ -2,15 +2,14 @@ package service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
 import api.LoggingUtil;
 
-import com.amazonaws.services.lambda.runtime.LambdaLogger;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import constant.RequestResponseConstants;
 import exception.ItemNotFoundException;
 import model.TotalCheckoutCostAPIRequest;
 import model.TotalCheckoutCostAPIResponse;
@@ -37,11 +36,10 @@ public class TotalCheckoutCostAPIService {
         this.discountedWatchCostCalculator = discountedWatchCostCalculator;
     }
 
-    public TotalCheckoutCostAPIResponse processRequest(TotalCheckoutCostAPIRequest totalCheckoutCostAPIRequest, LambdaLogger lambdaLogger) {
+    public TotalCheckoutCostAPIResponse processRequest(TotalCheckoutCostAPIRequest totalCheckoutCostAPIRequest) {
 
-        //TODO Move to constants
         HashMap<String, String> headers = new HashMap<String, String>();
-        headers.put("Content-Type", "application/json");
+        headers.put(RequestResponseConstants.CONTENT_TYPE_HEADER_KEY, RequestResponseConstants.CONTENT_TYPE_HEADER_VALUE);
 
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting()
@@ -55,7 +53,6 @@ public class TotalCheckoutCostAPIService {
             double totalCost = 0;
             for (ImmutablePair<WatchItem, Integer> watchItemAndCount : watchItemCountList) {
 
-                //TODO : check logic
                 totalCost += nonDiscountedWatchCostCalculator.getTotalCost(watchItemAndCount.getKey(), watchItemAndCount.getValue());
                 LoggingUtil.log("Total Non Discounted Cost Received for watchId : {" + watchItemAndCount.getKey()
                         .getItemId() + "} with a purchase count of {" + watchItemAndCount.getValue() + "} is {" + totalCost +"}");
@@ -67,7 +64,7 @@ public class TotalCheckoutCostAPIService {
             }
 
             return TotalCheckoutCostAPIResponse.builder()
-                    .statusCode(200)
+                    .statusCode(RequestResponseConstants.SUCCESS_CODE)
                     .headers(headers)
                     .body("price : " + totalCost)
                     .build();
@@ -75,7 +72,7 @@ public class TotalCheckoutCostAPIService {
         catch (ItemNotFoundException ex) {
 
             return TotalCheckoutCostAPIResponse.builder()
-                    .statusCode(404)
+                    .statusCode(RequestResponseConstants.ITEM_NOT_FOUND_CODE)
                     .headers(headers)
                     .body(ex.getMessage())
                     .build();
@@ -83,11 +80,10 @@ public class TotalCheckoutCostAPIService {
         catch (Exception ex) {
 
             LoggingUtil.log("Error Processing Request due to " + ex.getCause());
-
             return TotalCheckoutCostAPIResponse.builder()
-                    .statusCode(500)
+                    .statusCode(RequestResponseConstants.INTERNAL_SERVER_ERROR_CODE)
                     .headers(headers)
-                    .body("Internal Server Error")
+                    .body(RequestResponseConstants.INTERNAL_SERVER_ERROR_MESSAGE)
                     .build();
         }
     }
