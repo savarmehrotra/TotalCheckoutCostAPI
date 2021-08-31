@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 
+/**
+ * Data model for one line item of a watch in the catalog database
+ */
 @Data
 @SuperBuilder
 public class WatchItem extends CatalogItem {

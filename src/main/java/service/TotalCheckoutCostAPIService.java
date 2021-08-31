@@ -20,6 +20,17 @@ import processor.DiscountedWatchCostCalculator;
 import processor.NonDiscountedWatchCostCalculator;
 import processor.WatchListCondenser;
 
+/**
+ * @author : Savar Mehrotra
+ * Main API Service class which functions as an orchestrator for the required processing in-order to
+ * get the total checkout cost for the requested Items.
+ * Even Handles the exceptions and passes the appropriate responses.
+ *
+ * @input : TotalCheckoutCostRequest (Custom model to capture list of item inputs)
+ * @return : TotalCheckoutCostResponse (Custom model to capture final calculated cost, the response message and HTTP Response status code)
+ *
+ * */
+
 public class TotalCheckoutCostAPIService {
 
     private final WatchListCondenser watchListCondenser;
@@ -44,7 +55,6 @@ public class TotalCheckoutCostAPIService {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting()
                     .create();
-
             LoggingUtil.log("Requests Received : " + gson.toJson(totalCheckoutCostAPIRequest));
 
             List<ImmutablePair<WatchItem, Integer>> watchItemCountList = watchListCondenser.getCondensedWatchItemList(
@@ -66,7 +76,7 @@ public class TotalCheckoutCostAPIService {
             return TotalCheckoutCostAPIResponse.builder()
                     .statusCode(RequestResponseConstants.SUCCESS_CODE)
                     .headers(headers)
-                    .body("price : " + totalCost)
+                    .body(RequestResponseConstants.PRICE_KEY_MESSAGE_FOR_RESPONSE_BODY + totalCost)
                     .build();
         }
         catch (ItemNotFoundException ex) {

@@ -16,6 +16,12 @@ import constant.DynamoDBConstants;
 import exception.DataBaseException;
 import model.WatchItem;
 
+/**
+ * Class is responsible to query and fetch the data for the watch item from the data base.
+ *
+ * @throws DataBaseException (For any AWS or connectivity failures)
+ */
+
 public class WatchCatalogueDAO implements CatalogDAO<WatchItem> {
 
     private final DynamoDBAccessor dynamoDBAccessor;

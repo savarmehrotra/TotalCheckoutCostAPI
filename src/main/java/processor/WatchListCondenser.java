@@ -17,8 +17,12 @@ import model.WatchItem;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 /**
- * Creating ItemId and count pairings
- * Checking if the item exists in the catalog, and return the WatchItem and corresponding count
+ * This Class first consolidates the watch items into the corresponding key:value pair of (watchId:count).
+ * It then checks if the watchId exists in the catalog database (DynamoDB Catalog table in this case) and retrieves the corresponding data for it.
+ *
+ *
+ * @throws : ItemNotFoundException (If any one of the Items in the input list doesn't exist in the catalog database)
+ * @throws : DataBaseException (If there is an AWS or connectivity error while fetching the checking the watchId or fetching it's data from DynamoDB)
  */
 
 public class WatchListCondenser {

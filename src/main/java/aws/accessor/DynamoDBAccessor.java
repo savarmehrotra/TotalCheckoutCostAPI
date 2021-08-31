@@ -30,7 +30,7 @@ public class DynamoDBAccessor {
 
     public ItemCollection<QueryOutcome> queryWithQuerySpec(@NonNull QuerySpec querySpec) {
 
-        LoggingUtil.log("Querying Table : {} " + table.getTableName());
+        LoggingUtil.log("Querying Table : {" + table.getTableName() + "}");
         return table.query(querySpec);
     }
 }

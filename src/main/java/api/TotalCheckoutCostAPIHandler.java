@@ -13,7 +13,18 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.util.Objects;
 
-// TODO : Add JavaDoc
+/**
+ * @author : Savar Mehrotra
+ *
+ * 1)Entry point for the API Service.
+ *
+ * 2)Receives the JSON data in the HTTP request and passes the response back received from the API service.
+ *
+ * 3)Intializes object creation of the API Service and respective dependencies leverging Dagger's Dependency Injection.
+ *
+ * 4)Checks is the input in the correct format and returns an HTTP error code of 400 with an "Incorrect Input Message" to notify the client.
+ *
+ * */
 public class TotalCheckoutCostAPIHandler implements RequestHandler<JSONObject, TotalCheckoutCostAPIResponse> {
 
     private TotalCheckoutCostAPIServiceComponent totalCheckoutCostAPIServiceComponent;
@@ -32,7 +43,7 @@ public class TotalCheckoutCostAPIHandler implements RequestHandler<JSONObject, T
         catch (IOException e) {
 
             return TotalCheckoutCostAPIResponse.builder()
-                    .body(RequestResponseConstants.INTERNAL_INPUT_PASSED_MESSAGE)
+                    .body(RequestResponseConstants.INCORRECT_INPUT_PASSED_MESSAGE)
                     .statusCode(RequestResponseConstants.INCORRECT_INPUT_ERROR_CODE)
                     .build();
         }

@@ -3,6 +3,9 @@ package processor;
 import api.LoggingUtil;
 import model.WatchItem;
 
+/**
+ * Calculates the total watch purchase cost for a particular type of watch based on the number of it in the cart which are applicable for the discount policy.
+ */
 public class DiscountedWatchCostCalculator implements ItemCostCalculator<WatchItem> {
 
     @Override

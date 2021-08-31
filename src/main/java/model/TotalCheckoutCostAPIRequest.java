@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * POJO to map input request of the list of watchIds received in the JSON request
+ * */
 @Builder
 @Data
 @AllArgsConstructor
