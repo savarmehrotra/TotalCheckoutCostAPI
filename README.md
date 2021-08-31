@@ -8,7 +8,7 @@ The API accepts a list of watchIds and returns the total price to be paid at che
 If a watch item not present in the catalog is sent in the input request, it returns the id of the watch which was not found in the catalog.
 If the input is put in incorrectly, it tells the client to put in the input correctly. 
 
-![Architecture](/TotalCheckoutCostAPI/images/APIServiceArchitecure.png)
+![Architecture](TotalCheckoutCostAPI/images/APIServiceArchitecure.png)
 
 
 ####Technology and Frameworks Used
@@ -29,7 +29,7 @@ The project includes function code and supporting resources:
 
 ####Assumptions 
 For example and testing sake the below watch catalog is present in the DynamoDB table. Anything watch id input outside this table would return an `Watch not Found Response with the WatchId` unit it is added in the catalog.
-![Watch Catalog Being Used](/TotalCheckoutCostAPI/images/WatchCatalog.png.png)
+![Watch Catalog Being Used](TotalCheckoutCostAPI/images/WatchCatalog.png.png)
 
 ####Future Work 
 1) As of now, the catalog needs to be manually updated by add items in the DynamoDB Catalog table. Can create an API to create and update catalog items.
@@ -57,20 +57,20 @@ Note : As mentioned above, for functionality testing, the catalog contains only 
 ```
 5) The final request skeleton should look as below. Once is it set. Send the request.
 
-![Create HTTP Request in Postman](/TotalCheckoutCostAPI/images/PostmanHTTPRequest.png)
+![Create HTTP Request in Postman](TotalCheckoutCostAPI/images/PostmanHTTPRequest.png)
 
 6) You would receive the total price to paid as shown below 
 
-![Success Response in Postman](/TotalCheckoutCostAPI/images/PostmanSuccessResponse.png)
+![Success Response in Postman](TotalCheckoutCostAPI/images/PostmanSuccessResponse.png)
 
 ######Exception Use Cases
 
 a) If Watch is Not present in the catalog. It returns the id of the watch not present in the catalog.
 
-![ Watch not Found Response in Postman](/TotalCheckoutCostAPI/images/PostmanNotFoundResponse.png)
+![ Watch not Found Response in Postman](TotalCheckoutCostAPI/images/PostmanNotFoundResponse.png)
   
 b) If the JSON input shown in `step 4` is wrong. 
-![ Incorrect Input Response in Postman](/TotalCheckoutCostAPI/images/PostmanIncorrectInput.png)
+![ Incorrect Input Response in Postman](TotalCheckoutCostAPI/images/PostmanIncorrectInput.png)
 
 
 ### Testing Using Curl 
