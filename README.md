@@ -11,7 +11,7 @@ If the input is put in incorrectly, it tells the client to put in the input corr
 ![Architecture](TotalCheckoutCostAPI/images/APIServiceArchitecure.png)
 
 
-####Technology and Frameworks Used
+### Technology and Frameworks Used
 1) Java - Used as the main language
 2) Dagger - Library for Dependency Injection (Used Dagger to achieve lower latencies with AWS Lambda)
 3) Lombok - To generate common code if annotations
@@ -19,7 +19,7 @@ If the input is put in incorrectly, it tells the client to put in the input corr
 5) mockito and junit - For writing tests
 6) AWS SDK - For Lambda and DDB interactions
 
-####Project Structure
+#### Project Structure
 The project includes function code and supporting resources:
 - `src/main` - Java App code.
 - `src/test` - Tests.
@@ -27,11 +27,11 @@ The project includes function code and supporting resources:
 - `pom.xml` - A Maven build file.
 - `1-create-bucket.sh`, `2-deploy.sh`, etc. - Shell scripts that use the AWS CLI to deploy and manage the application.
 
-####Assumptions 
+#### Assumptions 
 For example and testing sake the below watch catalog is present in the DynamoDB table. Anything watch id input outside this table would return an `Watch not Found Response with the WatchId` unit it is added in the catalog.
-![Watch Catalog Being Used](TotalCheckoutCostAPI/images/WatchCatalog.png.png)
+![Watch Catalog Being Used](images/WatchCatalog.png.png)
 
-####Future Work 
+#### Future Work 
 1) As of now, the catalog needs to be manually updated by add items in the DynamoDB Catalog table. Can create an API to create and update catalog items.
 2) Caching. Cache the catalog item data. Since the updates would be less frequent than the read operations, the watch data can be cached to reduce latencies.
 3) Re-try. Though DynamoDB is highly available, but we can still add back off with an exponential re-try to make more fault tolerant to network related issues
@@ -43,7 +43,7 @@ The application is already hosted in my AWS account and can be invoked at the fo
 ```
 https://834si4jwkc.execute-api.us-east-1.amazonaws.com/test/checkout
 ```
-####Testing Using Postman
+### Testing Using Postman
 1) Sign In to Postman : https://www.postman.com/
 2) Go to `My Workspace` and create a new `HTTP Request`
 3) Choose the action as `POST` and enter the API url from above to invoke the function.
@@ -63,7 +63,7 @@ Note : As mentioned above, for functionality testing, the catalog contains only 
 
 ![Success Response in Postman](TotalCheckoutCostAPI/images/PostmanSuccessResponse.png)
 
-######Exception Use Cases
+#### Exception Use Cases
 
 a) If Watch is Not present in the catalog. It returns the id of the watch not present in the catalog.
 
@@ -85,11 +85,11 @@ curl -v -X POST \
 ```
 
 
-##Deploy Application to an AWS Account
+## Deploy Application to an AWS Account
 Use the following instructions to deploy the sample application in your own AWS account.
 
 
-###Requirements
+### Requirements
 - [Java 8 runtime environment (SE JRE)](https://www.oracle.com/java/technologies/javase-downloads.html)
 - [Maven 3](https://maven.apache.org/docs/history.html)
 - [The AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) v1.17 or newer.
@@ -102,7 +102,7 @@ cli_binary_format=raw-in-base64-out
 
 This setting enables the AWS CLI v2 to load JSON events from a file, matching the v1 behavior.
 
-###Setup
+### Setup
 Download or clone this repository.
 
     $ git clone https://github.com/savarmehrotra/TotalCheckoutCostAPI.git
@@ -113,7 +113,7 @@ Run `1-create-bucket.sh` to create a new bucket for deployment artifacts.
     TotalCheckoutCostAPI$ ./1-create-bucket.sh
     make_bucket: lambda-artifacts-a5e4xmplb5b22e0d
 
-###Deploy
+### Deploy
 Run `2-deploy.sh` to build the application with Gradle and deploy it.
 
     TotalCheckoutCostAPI$ ./2-deploy.sh
@@ -125,7 +125,7 @@ Run `2-deploy.sh` to build the application with Gradle and deploy it.
 This script uses AWS CloudFormation to deploy the Lambda functions and an IAM role. If the AWS CloudFormation stack that contains the resources already exists, the script updates it with any changes to the template or function code.
 
     
-###Cleanup
+### Cleanup
 To delete the application, run `3-cleanup.sh`.
 
     TotalCheckoutCostAPI$ ./4-cleanup.sh
