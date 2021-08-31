@@ -19,9 +19,9 @@ The service architecture is as follows :
 5) `mockito and junit` - For writing tests
 6) `AWS SDK` - For Lambda and DDB interactions
 
-1) 'AWS Lambda' - Serverless cloud compute solution to run the service
-2) 'AWS API Gateway' - AWS API Gateway is used to expose the API.
-3) 'AWS DynamoDB' - Used as a database for the watches or items currently available in the catalog.
+1) `AWS Lambda` - Serverless cloud compute solution to run the service
+2) `AWS API Gateway` - AWS API Gateway is used to expose the API.
+3) `AWS DynamoDB` - Used as a database for the watches or items currently available in the catalog.
 
 #### Project Structure
 The project includes function code and supporting resources:
