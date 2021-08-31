@@ -8,16 +8,16 @@ The API accepts a list of watchIds and returns the total price to be paid at che
 If a watch item not present in the catalog is sent in the input request, it returns the id of the watch which was not found in the catalog.
 If the input is put in incorrectly, it tells the client to put in the input correctly. 
 
-![Architecture](TotalCheckoutCostAPI/images/APIServiceArchitecure.png)
+![Architecture](images/APIServiceArchitecure.png)
 
 
-### Technology and Frameworks Used
-1) Java - Used as the main language
-2) Dagger - Library for Dependency Injection (Used Dagger to achieve lower latencies with AWS Lambda)
-3) Lombok - To generate common code if annotations
-4) slf4j - For logging in AWS CloudWatch
-5) mockito and junit - For writing tests
-6) AWS SDK - For Lambda and DDB interactions
+#### Technology and Frameworks Used
+1) `Java` - Used as the main language
+2) `Dagger` - Library for Dependency Injection (Used Dagger to achieve lower latencies with AWS Lambda)
+3) `Lombok` - To generate common code if annotations
+4) `slf4j` - For logging in AWS CloudWatch
+5) `mockito and junit` - For writing tests
+6) `AWS SDK` - For Lambda and DDB interactions
 
 #### Project Structure
 The project includes function code and supporting resources:
@@ -29,7 +29,7 @@ The project includes function code and supporting resources:
 
 #### Assumptions 
 For example and testing sake the below watch catalog is present in the DynamoDB table. Anything watch id input outside this table would return an `Watch not Found Response with the WatchId` unit it is added in the catalog.
-![Watch Catalog Being Used](images/WatchCatalog.png.png)
+![Watch Catalog Being Used](images/WatchCatalog.png)
 
 #### Future Work 
 1) As of now, the catalog needs to be manually updated by add items in the DynamoDB Catalog table. Can create an API to create and update catalog items.
@@ -57,20 +57,20 @@ Note : As mentioned above, for functionality testing, the catalog contains only 
 ```
 5) The final request skeleton should look as below. Once is it set. Send the request.
 
-![Create HTTP Request in Postman](TotalCheckoutCostAPI/images/PostmanHTTPRequest.png)
+![Create HTTP Request in Postman](images/PostmanHTTPRequest.png)
 
 6) You would receive the total price to paid as shown below 
 
-![Success Response in Postman](TotalCheckoutCostAPI/images/PostmanSuccessResponse.png)
+![Success Response in Postman](images/PostmanSuccessResponse.png)
 
 #### Exception Use Cases
 
 a) If Watch is Not present in the catalog. It returns the id of the watch not present in the catalog.
 
-![ Watch not Found Response in Postman](TotalCheckoutCostAPI/images/PostmanNotFoundResponse.png)
+![ Watch not Found Response in Postman](images/PostmanNotFoundResponse.png)
   
 b) If the JSON input shown in `step 4` is wrong. 
-![ Incorrect Input Response in Postman](TotalCheckoutCostAPI/images/PostmanIncorrectInput.png)
+![ Incorrect Input Response in Postman](images/PostmanIncorrectInput.png)
 
 
 ### Testing Using Curl 
@@ -89,7 +89,7 @@ curl -v -X POST \
 Use the following instructions to deploy the sample application in your own AWS account.
 
 
-### Requirements
+#### Requirements
 - [Java 8 runtime environment (SE JRE)](https://www.oracle.com/java/technologies/javase-downloads.html)
 - [Maven 3](https://maven.apache.org/docs/history.html)
 - [The AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) v1.17 or newer.
@@ -102,7 +102,7 @@ cli_binary_format=raw-in-base64-out
 
 This setting enables the AWS CLI v2 to load JSON events from a file, matching the v1 behavior.
 
-### Setup
+#### Setup
 Download or clone this repository.
 
     $ git clone https://github.com/savarmehrotra/TotalCheckoutCostAPI.git
@@ -113,7 +113,7 @@ Run `1-create-bucket.sh` to create a new bucket for deployment artifacts.
     TotalCheckoutCostAPI$ ./1-create-bucket.sh
     make_bucket: lambda-artifacts-a5e4xmplb5b22e0d
 
-### Deploy
+#### Deploy
 Run `2-deploy.sh` to build the application with Gradle and deploy it.
 
     TotalCheckoutCostAPI$ ./2-deploy.sh
@@ -125,7 +125,7 @@ Run `2-deploy.sh` to build the application with Gradle and deploy it.
 This script uses AWS CloudFormation to deploy the Lambda functions and an IAM role. If the AWS CloudFormation stack that contains the resources already exists, the script updates it with any changes to the template or function code.
 
     
-### Cleanup
+#### Cleanup
 To delete the application, run `3-cleanup.sh`.
 
     TotalCheckoutCostAPI$ ./4-cleanup.sh
