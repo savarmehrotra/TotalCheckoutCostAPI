@@ -25,9 +25,6 @@ import java.util.Objects;
  * 4)Checks is the input in the correct format and returns an HTTP error code of 400 with an "Incorrect Input Message" to notify the client.
  *
  * */
-
-//TODO : Throttling
-    //TODO : Email above and beyond. Display knowledge Large sacle systems
 public class TotalCheckoutCostAPIHandler implements RequestHandler<JSONObject, TotalCheckoutCostAPIResponse> {
 
     private TotalCheckoutCostAPIServiceComponent totalCheckoutCostAPIServiceComponent;
