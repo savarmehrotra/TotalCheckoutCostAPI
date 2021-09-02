@@ -17,6 +17,7 @@ import model.WatchItem;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import processor.DiscountedWatchCostCalculator;
+import processor.ItemCostCalculator;
 import processor.NonDiscountedWatchCostCalculator;
 import processor.WatchListCondenser;
 
@@ -34,13 +35,13 @@ import processor.WatchListCondenser;
 public class TotalCheckoutCostAPIService {
 
     private final WatchListCondenser watchListCondenser;
-    private final NonDiscountedWatchCostCalculator nonDiscountedWatchCostCalculator;
-    private final DiscountedWatchCostCalculator discountedWatchCostCalculator;
+    private final ItemCostCalculator nonDiscountedWatchCostCalculator;
+    private final ItemCostCalculator discountedWatchCostCalculator;
 
     @Inject
     public TotalCheckoutCostAPIService(final WatchListCondenser watchListCondenser,
-            final NonDiscountedWatchCostCalculator nonDiscountedWatchCostCalculator,
-            final DiscountedWatchCostCalculator discountedWatchCostCalculator) {
+            final ItemCostCalculator nonDiscountedWatchCostCalculator,
+            final ItemCostCalculator discountedWatchCostCalculator) {
 
         this.watchListCondenser = watchListCondenser;
         this.nonDiscountedWatchCostCalculator = nonDiscountedWatchCostCalculator;

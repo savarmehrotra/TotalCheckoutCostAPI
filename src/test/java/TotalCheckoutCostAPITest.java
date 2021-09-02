@@ -8,11 +8,13 @@ import doa.WatchCatalogueDAO;
 import exception.DataBaseException;
 import model.TotalCheckoutCostAPIRequest;
 import model.TotalCheckoutCostAPIResponse;
+import model.WatchItem;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import processor.DiscountedWatchCostCalculator;
+import processor.ItemCostCalculator;
 import processor.NonDiscountedWatchCostCalculator;
 import processor.WatchListCondenser;
 import service.TotalCheckoutCostAPIService;
@@ -25,8 +27,8 @@ public class TotalCheckoutCostAPITest {
     private WatchCatalogueDAO watchCatalogueDAO;
 
     private WatchListCondenser watchListCondenser;
-    private NonDiscountedWatchCostCalculator nonDiscountedWatchCostCalculator;
-    private DiscountedWatchCostCalculator discountedWatchCostCalculator;
+    private ItemCostCalculator nonDiscountedWatchCostCalculator;
+    private ItemCostCalculator discountedWatchCostCalculator;
     private TotalCheckoutCostAPIService totalCheckoutCostAPIService;
 
     @BeforeEach
